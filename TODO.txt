@@ -1,0 +1,5 @@
+- WebServer can have different handlers for the different commands
+  - Redirects will probably have to go to "/home" instead of "/"
+- Read/write patterns from/to file
+- Test brightness setting on pi
+- Serial communication for the wifi connection

@@ -1,7 +1,7 @@
 package array.web;
 
 import array.led.builtin.BuiltinFunctionManager;
-import array.led.builtin.Configurer;
+import array.led.configure.Configurer;
 import array.pattern.Pattern;
 import array.pattern.PatternManager;
 
@@ -65,7 +65,7 @@ public class HomePageCreator {
         StringBuilder builtinRows = new StringBuilder();
         buildBuiltinPatternHtmlTable(patternManager).forEach(row -> builtinRows.append(row + "\n"));
         String response = String.format(HTML_FORMAT, new HeadCreator().createHead(patternManager), patternManager.getCurrentPatternName(),
-                builtinRows, customRows);
+                builtinRows.toString(), customRows.toString());
         return response;
     }
 

@@ -1,18 +1,43 @@
 package array.led;
 
-import array.led.builtin.Configurer;
+import array.led.configure.BasicConfigurer;
+import array.led.configure.Configurer;
 
-import java.awt.Color;
 import java.util.List;
 
-public interface PixelWriter {
-	
-	public List<Color> getPixelData(double time);
-	
-	public void reset(double time);
+public abstract class PixelWriter {
 
-	public String getName();
+    private String name;
+    private Configurer configurer;
 
-	public Configurer getConfigurer();
+    protected PixelWriter(String name) {
+        this(name, new BasicConfigurer());
+    }
+
+    protected PixelWriter(String name, Configurer configurer) {
+        this.name = name;
+        this.configurer = configurer;
+    }
+
+    public String getName() {
+        return name;
+	}
+
+	public Configurer getConfigurer() {
+        return configurer;
+	}
+
+	protected void tick(double time) {
+        // Do nothing
+    }
+	
+	public List<List<Colour>> getPixelData(double time) {
+        tick(time);
+        return calculate(time);
+    }
+
+    protected abstract List<List<Colour>> calculate(double time);
+	
+	public abstract void reset(double time);
 
 }
