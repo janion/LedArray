@@ -1,7 +1,7 @@
 package array.led;
 
-import java.awt.Color;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -63,7 +63,7 @@ public class PixelUpdater {
     public void updateLoop() {
         while (!stopped) {
             writerLock.lock();
-            List<Colour> data = null;
+            Set<Colour> data = null;
             try {
                 data = writer.getPixelData(time() - startTime);
             } catch (Exception exptn) {
@@ -71,9 +71,10 @@ public class PixelUpdater {
             } finally {
             	writerLock.unlock();
             }
-            for (int x = 0; x < data.size(); x++) {
-                Colour datum = correctColour(data.get(x));
-                strip.setPixelColourRGB(x, datum.getRed(), datum.getGreen(), datum.getBlue());
+            int i = 0;
+            for (Colour colour : data) {
+                Colour datum = correctColour(colour);
+                strip.setPixelColourRGB(i++, datum.getRed(), datum.getGreen(), datum.getBlue());
             }
             strip.render();
         }

@@ -3,7 +3,7 @@ package array.led;
 import array.led.configure.BasicConfigurer;
 import array.led.configure.Configurer;
 
-import java.util.List;
+import java.util.Set;
 
 public abstract class PixelWriter {
 
@@ -31,12 +31,12 @@ public abstract class PixelWriter {
         // Do nothing
     }
 	
-	public List<Colour> getPixelData(double time) {
+	public Set<Colour> getPixelData(double time) {
         tick(time);
         return calculate(time);
     }
 
-    protected abstract List<Colour> calculate(double time);
+    protected abstract Set<Colour> calculate(double time);
 	
 	public abstract void reset(double time);
 
