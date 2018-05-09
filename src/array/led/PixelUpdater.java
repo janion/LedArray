@@ -63,7 +63,7 @@ public class PixelUpdater {
     public void updateLoop() {
         while (!stopped) {
             writerLock.lock();
-            List<Color> data = null;
+            List<Colour> data = null;
             try {
                 data = writer.getPixelData(time() - startTime);
             } catch (Exception exptn) {
@@ -72,15 +72,15 @@ public class PixelUpdater {
             	writerLock.unlock();
             }
             for (int x = 0; x < data.size(); x++) {
-                Color datum = correctColour(data.get(x));
+                Colour datum = correctColour(data.get(x));
                 strip.setPixelColourRGB(x, datum.getRed(), datum.getGreen(), datum.getBlue());
             }
             strip.render();
         }
     }
 
-	private Color correctColour(Color colour) {
-		return new Color(colour.getGreen(), colour.getRed(), colour.getBlue());
+	private Colour correctColour(Colour colour) {
+		return new Colour(colour.getGreen(), colour.getRed(), colour.getBlue());
 	}
 	
 	private double time() {

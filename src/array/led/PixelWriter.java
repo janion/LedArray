@@ -31,12 +31,12 @@ public abstract class PixelWriter {
         // Do nothing
     }
 	
-	public List<List<Colour>> getPixelData(double time) {
+	public List<Colour> getPixelData(double time) {
         tick(time);
         return calculate(time);
     }
 
-    protected abstract List<List<Colour>> calculate(double time);
+    protected abstract List<Colour> calculate(double time);
 	
 	public abstract void reset(double time);
 

@@ -29,11 +29,10 @@ public class PatternManager {
     }
 
     public PatternManager(PixelWriterFactory writerFactory, String patternFileName) {
-
         this.writerFactory = writerFactory;
         this.patternFileName = patternFileName;
-//    fileReader = new PatternReader();
-//    fileWriter = new PatternWriter();
+        fileReader = new PatternReader();
+        fileWriter = new PatternWriter();
         patterns = fileReader.readPatterns(patternFileName);
         builtins = new BuiltinFunctionManager();
     }

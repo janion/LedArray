@@ -50,7 +50,7 @@ public class HeadCreator {
             rows += String.format(NAMES_ROW_FORMAT, name);
         }
         String script = String.format(VALIDATION_SCRIPT_FORMAT, rows);
-        return script.substring(0, script.length() - 2);
+        return script.substring(0, script.length());
     }
 
 }
