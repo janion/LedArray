@@ -9,13 +9,13 @@ import java.util.Map;
 
 public class AddPatternHandler extends Handler {
 
-    private static final String INVALID_PATTERN_REDIRECT = String.format(REDIRECT, 5000, "<h1>Invalid pattern functions:</h1><br>\n" +
+    private static final String INVALID_PATTERN_REDIRECT = String.format(REDIRECT, 5000, "\n<h1>Invalid pattern functions:</h1><br>\n" +
             "Red = %s<br>\n" +
             "Green = %s<br>\n" +
             "Blue = %s<br>\n" +
             "You will be redirected in 5 seconds.\n");
 
-    private static final String INVALID_NAME_REDIRECT = String.format(REDIRECT, 5000, "<h1>Invalid pattern name: %s</h1><br>\n" +
+    private static final String INVALID_NAME_REDIRECT = String.format(REDIRECT, 5000, "\n<h1>Invalid pattern name: %s</h1><br>\n" +
             "This pattern name is already in use.\n" +
             "You will be redirected in 5 seconds.\n");
 

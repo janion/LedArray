@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class BasicConfigurer implements Configurer {
 
-    private static final String REDIRECT = "<!DOCTYPE html>\n" +
+    protected static final String REDIRECT = "<!DOCTYPE html>\n" +
             "<html>\n" +
             "<head>\n" +
             "<script type=\"text/javascript\">\n" +
