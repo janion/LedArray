@@ -6,7 +6,7 @@ public class ColourWheel {
 
 	private static final double CONVERSION = 1.0 / 120;
 
-	public Color getColour(double intensity, double angle) {
+	public Colour getColour(double intensity, double angle) {
 		angle %= 360;
 		double r;
 		double g;
@@ -30,6 +30,6 @@ public class ColourWheel {
 			b = intensity * ((120 - angle) * CONVERSION);
 		}
 
-		return new Color((int) r, (int) g, (int) b);
+		return new Colour((int) r, (int) g, (int) b);
 	}
 }

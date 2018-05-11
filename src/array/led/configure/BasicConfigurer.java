@@ -16,7 +16,7 @@ public class BasicConfigurer implements Configurer {
     private boolean isConfigurable;
 
     public BasicConfigurer () {
-        isConfigurable = !(this instanceof BasicConfigurer);
+        isConfigurable = !this.getClass().equals(BasicConfigurer.class);
     }
 
     @Override

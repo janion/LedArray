@@ -1,6 +1,5 @@
 package array.led.writer;
 
-import array.led.PixelWriter;
 import array.led.PixelWriterFactory;
 import array.pattern.Pattern;
 

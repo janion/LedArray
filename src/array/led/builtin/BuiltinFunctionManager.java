@@ -1,8 +1,11 @@
 package array.led.builtin;
 
-import array.led.PixelWriter;
+import array.Constants;
+import array.led.builtin.rainbow.SolidColourPixelWriter;
+import array.led.writer.PixelWriter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BuiltinFunctionManager {
@@ -11,7 +14,7 @@ public class BuiltinFunctionManager {
     private List<String> names;
 
     public BuiltinFunctionManager() {
-        writers = new ArrayList<>();
+        writers = Arrays.asList(new SolidColourPixelWriter(Constants.LED_COUNT_X, Constants.LED_COUNT_Y));
         names = new ArrayList<>();
 
         for (PixelWriter writer : writers) {

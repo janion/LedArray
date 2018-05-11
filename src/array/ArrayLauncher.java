@@ -1,7 +1,11 @@
 package array;
 
+import array.led.MockPixelUpdater;
+import array.led.PixelUpdater;
+import array.led.writer.MathematicalFunctionPixelWriterFactory;
 import array.pattern.PatternManager;
 import array.web.WebServer;
+import fn.operator.singlearg.Constant;
 
 public class ArrayLauncher {
 
@@ -15,20 +19,20 @@ public class ArrayLauncher {
 
         //WifiConnectionSetup().connect()
 
-        //writerFactory = MathematicalFunctionPixelWriterFactory(LED_COUNT_X, LED_COUNT_Y, PIXEL_MODE_2D)
+        MathematicalFunctionPixelWriterFactory writerFactory = new MathematicalFunctionPixelWriterFactory(Constants.LED_COUNT_X, Constants.LED_COUNT_Y);
         //writer = TextPixelWriter(LED_COUNT_X, LED_COUNT_Y, PIXEL_MODE_2D)
         //writer.setTextContent(getIpAddress())
         //strip = NeoPixel(LED_COUNT_X * LED_COUNT_Y, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
         //strip.begin()
 
         //updater = PixelUpdater(writer, strip)
+        PixelUpdater updater = new MockPixelUpdater();
         //updaterThread = PixelUpdaterThread(updater)
 
 //        PatternManager patterns = new PatternManager(writerFactory);
-        PatternManager patterns = new PatternManager(null);
+        PatternManager patterns = new PatternManager(writerFactory);
 
-//        server = WebServer.WebServer(updater, writerFactory, patterns);
-        WebServer server = new WebServer(null, null, patterns);
+        WebServer server = new WebServer(updater, writerFactory, patterns);
         Thread serverThread = new Thread(server::serve);
 
         //updaterThread.start();

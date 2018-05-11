@@ -1,6 +1,6 @@
 package array.pattern;
 
-import array.led.PixelWriter;
+import array.led.writer.PixelWriter;
 import array.led.PixelWriterFactory;
 import array.led.builtin.BuiltinFunctionManager;
 
@@ -74,8 +74,8 @@ public class PatternManager {
             fileWriter.writePatterns(patternFileName, patterns);
             if (patterns.size() == 1) {
                 setPattern(name);
-                return true;
             }
+            return true;
         }
         return false;
     }

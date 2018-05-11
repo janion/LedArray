@@ -1,5 +1,6 @@
 package array.web;
 
+import array.led.PixelUpdater;
 import array.led.builtin.BuiltinFunctionManager;
 import array.led.configure.Configurer;
 import array.pattern.Pattern;
@@ -17,8 +18,8 @@ public class HomePageCreator {
             "<body>\n" +
             "<h1>Table-top patterns</h1>\n" +
             "<b>Current pattern:</b> %s<br>\n" +
-            "<form action=\" / setBrightness\">\n"+
-            "<input type=\"number\" name=\"brightness\" min=\"0\" max=\"255\"> <input type=\"submit\" value=\"Set Brightness(0-255)\">\n"+
+            "<form action=\"/setBrightness\">\n"+
+            "<input type=\"number\" name=\"brightness\" min=\"0\" max=\"255\" value=\"%d\"> <input type=\"submit\" value=\"Set Brightness(0-255)\">\n"+
             "</form>\n"+
             "<br>\n"+
             "<div style=\"overflow-x:auto;\">\n"+
@@ -58,6 +59,11 @@ public class HomePageCreator {
 
     private static final String LINK_FORMAT = "<a href=\"/configure?name=%s\">Configure</a>";
 
+    private PixelUpdater pixelUpdater;
+
+    public HomePageCreator(PixelUpdater pixelUpdater) {
+        this.pixelUpdater = pixelUpdater;
+    }
 
     public String buildHomePage(PatternManager patternManager) {
         StringBuilder customRows = new StringBuilder();
@@ -65,7 +71,7 @@ public class HomePageCreator {
         StringBuilder builtinRows = new StringBuilder();
         buildBuiltinPatternHtmlTable(patternManager).forEach(row -> builtinRows.append(row + "\n"));
         String response = String.format(HTML_FORMAT, new HeadCreator().createHead(patternManager), patternManager.getCurrentPatternName(),
-                builtinRows.toString(), customRows.toString());
+                pixelUpdater.getBrightness(), builtinRows.toString(), customRows.toString());
         return response;
     }
 

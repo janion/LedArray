@@ -1,7 +1,6 @@
 package array.web.handler;
 
 import array.led.PixelUpdater;
-import array.led.PixelWriter;
 import array.led.PixelWriterFactory;
 import array.pattern.PatternManager;
 

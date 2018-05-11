@@ -1,7 +1,6 @@
 package array.led.writer;
 
 import array.led.Colour;
-import array.led.PixelWriter2D;
 import array.pattern.Pattern;
 import fn.Function;
 

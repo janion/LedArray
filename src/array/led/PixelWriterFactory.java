@@ -1,7 +1,7 @@
 package array.led;
 
+import array.led.writer.PixelWriter;
 import array.pattern.Pattern;
-import fn.Function;
 
 public interface PixelWriterFactory {
 	

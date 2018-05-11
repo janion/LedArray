@@ -1,6 +1,6 @@
 package array.led.configure.custom;
 
-import array.led.PixelWriter;
+import array.led.writer.PixelWriter;
 import array.led.configure.BasicConfigurer;
 import array.led.configure.custom.item.Item;
 import array.led.configure.custom.validation.ValidationScriptCreator;
@@ -59,7 +59,7 @@ public class CustomConfigurer extends BasicConfigurer {
 
     public String configure(Map<String, String> parameters) {
         String action = parameters.get("action");
-        if (action.equals("Cancel")) {
+        if ("Cancel".equals(action)) {
             return REDIRECT;
         }
 

@@ -1,5 +1,6 @@
-package array.led;
+package array.led.writer;
 
+import array.led.Colour;
 import array.led.configure.BasicConfigurer;
 import array.led.configure.Configurer;
 
@@ -22,6 +23,10 @@ public abstract class PixelWriter {
     public String getName() {
         return name;
 	}
+
+	protected void setConfigurer(Configurer configurer) {
+        this.configurer = configurer;
+    }
 
 	public Configurer getConfigurer() {
         return configurer;

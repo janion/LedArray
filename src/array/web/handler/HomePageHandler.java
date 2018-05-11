@@ -20,12 +20,12 @@ public class HomePageHandler extends Handler {
 
     public HomePageHandler(PixelUpdater pixelUpdater, PixelWriterFactory writerFactory, PatternManager patternManager) {
         super(pixelUpdater, writerFactory, patternManager);
-        homePageCreator = new HomePageCreator();
+        homePageCreator = new HomePageCreator(pixelUpdater);
     }
 
     @Override
     protected String createResponse(Map<String, String> parameters) {
-        return (homePageCreator.buildHomePage(patternManager));
+        return homePageCreator.buildHomePage(patternManager);
     }
 
 }

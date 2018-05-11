@@ -27,7 +27,7 @@ public class Pattern {
 	}
 
     public boolean isValid() {
-		return redFunction == null || greenFunction == null || blueFunction == null;
+		return redFunction != null && greenFunction != null && blueFunction != null;
 	}
 
 	public String getName() {

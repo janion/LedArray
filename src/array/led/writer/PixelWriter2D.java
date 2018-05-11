@@ -1,4 +1,6 @@
-package array.led;
+package array.led.writer;
+
+import array.led.Colour;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,8 +12,8 @@ public abstract class PixelWriter2D extends PixelWriter {
 
     public PixelWriter2D(String name, int ledCountX, int ledCountY) {
         super(name);
-        this.ledCountX =ledCountX;
-        this.ledCountY =ledCountY;
+        this.ledCountX = ledCountX;
+        this.ledCountY = ledCountY;
     }
 
     @Override
@@ -37,6 +39,11 @@ public abstract class PixelWriter2D extends PixelWriter {
         for (int y = ledCountY - 1; y >= 0; y--) {
             data.add(evaluateCell(x, y, time));
         }
+    }
+
+    @Override
+    public void reset(double time) {
+        // Do nothing
     }
 
     protected abstract Colour evaluateCell(int x, int y, double time);
