@@ -3,5 +3,7 @@
 - Serial communication for the wifi connection
 - Check whether ValidationScriptCreator is really needed
 - Replace all string concatenations with StringBuilders
+- Map is maybe too heavyweight for the function parsing - explore other solutions
+- Message on brightness set for confirmation?
 
 - Builtin patterns, html items and configurations are left to port

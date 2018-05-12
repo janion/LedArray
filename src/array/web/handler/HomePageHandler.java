@@ -25,7 +25,6 @@ public class HomePageHandler extends Handler {
 
     @Override
     protected String createResponse(Map<String, String> parameters) {
-        System.out.println("Creating home page");
         return homePageCreator.buildHomePage(patternManager);
     }
 
