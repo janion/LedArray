@@ -53,6 +53,11 @@ public class LedTest2 implements AutoCloseable {
         i2c = I2CFactory.getInstance(I2CBus.BUS_1);
 
         device = i2c.getDevice(WS2812B_ADDR);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException exptn) {
+            System.err.println(exptn);
+        }
     }
 
     public void setLED(int index, Colour colour) throws IOException {
