@@ -50,7 +50,7 @@ public class LedTest2 implements AutoCloseable {
     private I2CDevice device;
 
     public LedTest2() throws UnsupportedBusNumberException, IOException {
-        i2c = I2CFactory.getInstance(I2CBus.BUS_0);
+        i2c = I2CFactory.getInstance(I2CBus.BUS_1);
 
         device = i2c.getDevice(WS2812B_ADDR);
         try {
