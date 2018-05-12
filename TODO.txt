@@ -6,4 +6,6 @@
 - Map is maybe too heavyweight for the function parsing - explore other solutions
 - Message on brightness set for confirmation?
 
+- Make launcher to run LEDs as test
+
 - Builtin patterns, html items and configurations are left to port
