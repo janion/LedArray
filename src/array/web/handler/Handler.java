@@ -19,7 +19,7 @@ public abstract class Handler implements HttpHandler {
             "<html>\n" +
             "<head>\n" +
             "<script type=\"text/javascript\">\n" +
-            "setTimeout(\"location.href = '/home';\",%d);\n" +
+            "setTimeout(\"location.href = '/';\",%d);\n" +
             "</script>\n" +
             "</head>\n" +
             "<body>\n" +

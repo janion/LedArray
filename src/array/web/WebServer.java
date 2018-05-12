@@ -14,7 +14,7 @@ public class WebServer {
     private HttpServer server;
 
     public WebServer(PixelUpdater pixelUpdater, PixelWriterFactory writerFactory, PatternManager patternManager) throws IOException {
-        server = HttpServer.create(new InetSocketAddress(81), 0);
+        server = HttpServer.create(new InetSocketAddress(80), 0);
 
         server.createContext("/", new HomePageHandler(pixelUpdater, writerFactory, patternManager));
         server.createContext("/setBrightness", new SetBrightnessHandler(pixelUpdater, writerFactory, patternManager));
