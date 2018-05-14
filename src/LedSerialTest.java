@@ -21,8 +21,10 @@ public class LedSerialTest {
                         green = 255;
                     }
                     setPixel(arduino, index, 0, green, 0);
+                    System.out.println(index);
                 }
             }
+            System.out.println("RENDER");
             render(arduino);
             even = !even;
         }
