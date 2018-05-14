@@ -8,7 +8,7 @@ public class LedSerialTest {
     //private static final String BRIGHTNESS = "" + (char) 255 + (char) 255 + (char) 255;
 
     public static void main(String[] args) {
-        Arduino arduino = new Arduino("/dev/ttyUSB0", 9600);
+        Arduino arduino = new Arduino("/dev/ttyUSB0", 115200);
         arduino.openConnection();
 
         boolean even = true;
