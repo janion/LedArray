@@ -20,28 +20,36 @@ public class LedSerialTest {
                     if ((index % 2 == 0 && even) || (index % 2 == 1 && !even)) {
                         green = 255;
                     }
-//                    setPixel(arduino, index, 0, green, 0);
+                    setPixel(arduino, index, 0, green, 0);
                     System.out.println(index);
                 }
             }
             System.out.println("RENDER");
-//            render(arduino);
+            render(arduino);
             even = !even;
         }
     }
 
     private static void setPixel(Arduino arduino, int index, int r, int g, int b) {
-        String str = "";
-        str += (char) index;
-        str += (char) r;
-        str += (char) g;
-        str += (char) b;
+//        String str = "";
+//        str += (char) index;
+//        str += (char) r;
+//        str += (char) g;
+//        str += (char) b;
+//
+//        arduino.serialWrite(str);
 
-        arduino.serialWrite(str);
+        arduino.serialWrite((char) index);
+        arduino.serialWrite((char) r);
+        arduino.serialWrite((char) g);
+        arduino.serialWrite((char) b);
     }
 
     private static void render(Arduino arduino) {
-        arduino.serialWrite(RENDER);
+//        arduino.serialWrite(RENDER);
+        for (byte chr : RENDER.getBytes()) {
+            arduino.serialWrite((char) chr);
+        }
     }
 
 }
