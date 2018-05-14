@@ -20,12 +20,12 @@ public class LedSerialTest {
                     if ((index % 2 == 0 && even) || (index % 2 == 1 && !even)) {
                         green = 255;
                     }
-                    setPixel(arduino, index, 0, green, 0);
+//                    setPixel(arduino, index, 0, green, 0);
                     System.out.println(index);
                 }
             }
             System.out.println("RENDER");
-            render(arduino);
+//            render(arduino);
             even = !even;
         }
     }
