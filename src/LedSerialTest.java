@@ -9,6 +9,7 @@ public class LedSerialTest {
 
     public static void main(String[] args) {
         Arduino arduino = new Arduino("/dev/ttyUSB0", 9600);
+        arduino.openConnection();
 
         boolean even = true;
         while (true) {
