@@ -1,4 +1,3 @@
-import array.led.Colour;
 import com.diozero.ws281xj.LedDriverInterface;
 import com.diozero.ws281xj.StripType;
 import com.diozero.ws281xj.spi.WS281xSpi;

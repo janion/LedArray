@@ -1,9 +1,5 @@
-package array;
-
 import java.awt.Color;
-import java.awt.Point;
 import java.io.IOException;
-import java.util.Objects;
 
 import array.led.Colour;
 import com.pi4j.io.i2c.I2CBus;
