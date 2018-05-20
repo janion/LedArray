@@ -94,8 +94,6 @@ public class Handler implements HttpHandler {
         pb.redirectErrorStream(true);
         process = pb.start();
 
-        final BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
         new Thread(() -> {
             BufferedWriter bw;
             try {
@@ -105,7 +103,9 @@ public class Handler implements HttpHandler {
                 return;
             }
             while (true) {
+                BufferedReader br = null;
                 try {
+                    br = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     String line = br.readLine();
                     bw.write(line);
                 } catch (IOException e) {
@@ -113,7 +113,9 @@ public class Handler implements HttpHandler {
                     break;
                 } finally {
                     try {
-                        br.close();
+                        if (br != null) {
+                            br.close();
+                        }
                         bw.close();
                     } catch (IOException e) {
                         e.printStackTrace();
