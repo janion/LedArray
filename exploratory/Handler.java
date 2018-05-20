@@ -120,7 +120,7 @@ public class Handler implements HttpHandler {
                     }
                 }
             }
-        });
+        }).start();
     }
 
     public void close() {
