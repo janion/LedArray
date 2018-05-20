@@ -93,6 +93,34 @@ public class Handler implements HttpHandler {
         pb.directory(new File("/home/pi/table/LedTable/src"));
         pb.redirectErrorStream(true);
         process = pb.start();
+
+        final BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+        new Thread(() -> {
+            BufferedWriter bw;
+            try {
+                bw = new BufferedWriter(new FileWriter(new File("/home/pi/table/PythonOutput.txt")));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            while (true) {
+                try {
+                    String line = br.readLine();
+                    bw.write(line);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    break;
+                } finally {
+                    try {
+                        br.close();
+                        bw.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     public void close() {
