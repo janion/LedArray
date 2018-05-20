@@ -81,15 +81,16 @@ public class Handler implements HttpHandler {
     private void startPython() throws IOException {
         //Build command
         List<String> commands = new ArrayList<>();
+        commands.add("sudo");
         commands.add("python3");
         //Add arguments
-        commands.add("LocalHostSocketTest.py");
+//        commands.add("LocalHostSocketTest.py");
+        commands.add("LocalTableLauncher.py");
 
         //Run macro on target
         ProcessBuilder pb = new ProcessBuilder(commands);
-//        pb.directory(new File("C:/Users/Janion/PyCharmProjects/LedTable/src/test"));
-//        pb.directory(new File("~/table/LedArray/builds"));
-        pb.directory(new File("/home/pi/table/LedArray/builds"));
+//        pb.directory(new File("/home/pi/table/LedArray/builds"));
+        pb.directory(new File("/home/pi/table/LedTable/src"));
         pb.redirectErrorStream(true);
         process = pb.start();
     }
