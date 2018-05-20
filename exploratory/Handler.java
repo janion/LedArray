@@ -95,34 +95,39 @@ public class Handler implements HttpHandler {
         process = pb.start();
 
         new Thread(() -> {
-            BufferedWriter bw;
-            try {
-                bw = new BufferedWriter(new FileWriter(new File("/home/pi/table/PythonOutput.txt")));
-            } catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
-            while (true) {
-                BufferedReader br = null;
-                try {
-                    br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line = br.readLine();
-                    bw.write(line);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    break;
-                } finally {
-                    try {
-                        if (br != null) {
-                            br.close();
-                        }
-                        bw.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            while (process.isAlive());
+            System.out.println("Python died");
         }).start();
+
+//        new Thread(() -> {
+//            BufferedWriter bw;
+//            try {
+//                bw = new BufferedWriter(new FileWriter(new File("/home/pi/table/PythonOutput.txt")));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                return;
+//            }
+//            while (true) {
+//                BufferedReader br = null;
+//                try {
+//                    br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//                    String line = br.readLine();
+//                    bw.write(line);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    break;
+//                } finally {
+//                    try {
+//                        if (br != null) {
+//                            br.close();
+//                        }
+//                        bw.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }).start();
     }
 
     public void close() {
