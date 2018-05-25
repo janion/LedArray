@@ -64,9 +64,15 @@ public class Handler implements HttpHandler {
             System.out.println("Wrote");
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            // TODO: Read until "</html>"? or format response html
-            response = bufferedReader.readLine();
-            System.out.println("Read");
+//            // TODO: Read until "</html>"? or format response html
+//            response = bufferedReader.readLine();
+//            System.out.println("Read");
+            response = "";
+            String line = "";
+            while (!line.contains("</html>")) {
+                line = bufferedReader.readLine();
+                response += line;
+            }
 
             bufferedWriter.close();
             bufferedReader.close();
