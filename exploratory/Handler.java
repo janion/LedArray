@@ -55,6 +55,9 @@ public class Handler implements HttpHandler {
 
     public String getResponseFromPython(String path) {
         String response = ERROR;
+        if (path.contains("favicon")) {
+            return response;
+        }
         try {
             Socket socket = new Socket("localhost", 83);
             System.out.println(socket.isConnected());
