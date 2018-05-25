@@ -24,11 +24,12 @@ public class Handler implements HttpHandler {
 
     public Handler() {
         // Start python server
-        try {
-            startPython();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            startPython();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("Assumed python started");
         System.out.println("Started python");
     }
 
