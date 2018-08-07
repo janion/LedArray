@@ -14,7 +14,7 @@ public class Handler implements HttpHandler {
             "<html>\n" +
             "<head>\n" +
             "<script type=\"text/javascript\">\n" +
-            "setTimeout(\"location.href = '/';\",%d);\n" +
+            "setTimeout(\"location.href = '/home';\",5000);\n" +
             "</script>\n" +
             "</head>\n" +
             "<body>\n" +
@@ -88,9 +88,11 @@ public class Handler implements HttpHandler {
             } catch (FileNotFoundException ex) {
                 // Try harder
             } catch (IOException ex) {
+                System.err.println(ex);
                 response = ERROR;
             }
         } catch(IOException e) {
+            System.err.println(e);
             e.printStackTrace();
         }
 
