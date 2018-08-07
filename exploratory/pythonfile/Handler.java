@@ -52,7 +52,7 @@ public class Handler implements HttpHandler {
         System.out.println("Query: " + query);
         // Get response from python server
         String response = query == null ? ERROR : getResponseFromPython(query);
-        System.out.println("Got python response: " + response);
+        //System.out.println("Got python response: " + response);
 
         exchange.sendResponseHeaders(200, response.getBytes().length);
         OutputStream os = exchange.getResponseBody();
@@ -85,6 +85,7 @@ public class Handler implements HttpHandler {
                 response = responseInFile;
 
                 new File(responseFileName).delete();
+                System.out.println("Response file deleted: " + responseFileName);
             } catch (FileNotFoundException ex) {
                 // Try harder
             } catch (IOException ex) {
