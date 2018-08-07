@@ -65,11 +65,11 @@ public class Handler implements HttpHandler {
             return response;
         }
         try {
-            PrintWriter writer = new PrintWriter(String.format(REQUEST_FILE_NAME_FORMAT, requestCount), "UTF-8");
+            PrintWriter writer = new PrintWriter(FILE_LOCATION + "/" + String.format(REQUEST_FILE_NAME_FORMAT, requestCount), "UTF-8");
             writer.println(path);
             writer.close();
 
-            String responseFileName = String.format(REQUEST_FILE_NAME_FORMAT, requestCount++);
+            String responseFileName = FILE_LOCATION + "/" + String.format(RESPONSE_FILE_NAME_FORMAT, requestCount++);
             try {
                 String responseInFile = "";
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(responseFileName));
@@ -82,6 +82,8 @@ public class Handler implements HttpHandler {
 
                 bufferedReader.close();
                 response = responseInFile;
+
+                new File(responseFileName).delete();
             } catch (FileNotFoundException ex) {
                 // Try harder
             } catch (IOException ex) {
