@@ -62,9 +62,9 @@ public class Handler implements HttpHandler {
 
     public String getResponseFromPython(String path) {
         String response = ERROR;
-        if (path.contains("favicon")) {
-            return response;
-        }
+//        if (path.contains("favicon")) {
+//            return response;
+//        }
         try {
             PrintWriter writer = new PrintWriter(FILE_LOCATION + "/" + String.format(REQUEST_FILE_NAME_FORMAT, requestCount), "UTF-8");
             writer.println(path);
@@ -88,6 +88,7 @@ public class Handler implements HttpHandler {
                 System.out.println("Response file deleted: " + responseFileName);
             } catch (FileNotFoundException ex) {
                 // Try harder
+                System.err.println(ex);
             } catch (IOException ex) {
                 System.err.println(ex);
                 response = ERROR;
