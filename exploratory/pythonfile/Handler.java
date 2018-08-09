@@ -90,11 +90,12 @@ public class Handler implements HttpHandler {
                     response = responseInFile;
 
                     new File(responseFileName).delete();
-                    System.out.println("Response file deleted: " + responseFileName);
+                    System.out.println("Response file read and deleted: " + responseFileName);
+                    break;
                 } catch (FileNotFoundException ex) {
                     // Try harder
-                    System.err.println(ex);
                     if (System.currentTimeMillis() - start > TIMEOUT) {
+                        System.err.println(ex);
                         response = ERROR;
                         break;
                     }
