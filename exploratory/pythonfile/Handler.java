@@ -68,9 +68,11 @@ public class Handler implements HttpHandler {
 //            return response;
 //        }
         try {
-            PrintWriter writer = new PrintWriter(FILE_LOCATION + "/" + String.format(REQUEST_FILE_NAME_FORMAT, requestCount), "UTF-8");
+            String requestFileName = String.format(REQUEST_FILE_NAME_FORMAT, requestCount);
+            PrintWriter writer = new PrintWriter(FILE_LOCATION + "/" + requestFileName, "UTF-8");
             writer.println(path);
             writer.close();
+            System.out.println("JAVA - Request written " + requestFileName);
 
             long start = System.currentTimeMillis();
 
@@ -90,22 +92,22 @@ public class Handler implements HttpHandler {
                     response = responseInFile;
 
                     new File(responseFileName).delete();
-                    System.out.println("Response file read and deleted: " + responseFileName);
+                    System.out.println("JAVA - Response file read and deleted: " + responseFileName);
                     break;
                 } catch (FileNotFoundException ex) {
                     // Try harder
                     if (System.currentTimeMillis() - start > TIMEOUT) {
-                        System.err.println(ex);
+                        System.err.println("JAVA - Timeout " + ex);
                         response = ERROR;
                         break;
                     }
                 } catch (IOException ex) {
-                    System.err.println(ex);
+                    System.err.println("JAVA - " + ex);
                     response = ERROR;
                 }
             }
         } catch(IOException e) {
-            System.err.println(e);
+            System.err.println("JAVA - " + e);
             e.printStackTrace();
         }
 
