@@ -26,6 +26,8 @@ public class Handler implements HttpHandler {
     private static final String REQUEST_FILE_NAME_FORMAT = "%08d.req";
     private static final String RESPONSE_FILE_NAME_FORMAT = "%08d.res";
 
+    private static final long TIMEOUT = 5000;
+
     private Process process;
     private int requestCount = 0;
 
@@ -70,28 +72,36 @@ public class Handler implements HttpHandler {
             writer.println(path);
             writer.close();
 
+            long start = System.currentTimeMillis();
+
             String responseFileName = FILE_LOCATION + "/" + String.format(RESPONSE_FILE_NAME_FORMAT, requestCount++);
-            try {
-                String responseInFile = "";
-                BufferedReader bufferedReader = new BufferedReader(new FileReader(responseFileName));
+            while (true) {
+                try {
+                    String responseInFile = "";
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(responseFileName));
 
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    responseInFile += line;
-                    responseInFile += "\n";
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        responseInFile += line;
+                        responseInFile += "\n";
+                    }
+
+                    bufferedReader.close();
+                    response = responseInFile;
+
+                    new File(responseFileName).delete();
+                    System.out.println("Response file deleted: " + responseFileName);
+                } catch (FileNotFoundException ex) {
+                    // Try harder
+                    System.err.println(ex);
+                    if (System.currentTimeMillis() - start > TIMEOUT) {
+                        response = ERROR;
+                        break;
+                    }
+                } catch (IOException ex) {
+                    System.err.println(ex);
+                    response = ERROR;
                 }
-
-                bufferedReader.close();
-                response = responseInFile;
-
-                new File(responseFileName).delete();
-                System.out.println("Response file deleted: " + responseFileName);
-            } catch (FileNotFoundException ex) {
-                // Try harder
-                System.err.println(ex);
-            } catch (IOException ex) {
-                System.err.println(ex);
-                response = ERROR;
             }
         } catch(IOException e) {
             System.err.println(e);
